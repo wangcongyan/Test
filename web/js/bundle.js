@@ -190,21 +190,30 @@
     GameConfig.init();
 
     class MainMenu {
+
+        
         constructor() {
             fgui.UIPackage.loadPackage("res/UI/Test", Laya.Handler.create(this, this.onUILoaded));
         }
         onUILoaded() {
-            this._view = fgui.UIPackage.createObject("Test", "renzu").asCom;
+            this._view = fgui.UIPackage.createObject("Test", "main").asCom;
             this._view.makeFullScreen();
             fgui.GRoot.inst.addChild(this._view);
+            this.c2 = this.ui.getController("c2");
         }
         startDemo(demoClass) {
             this._view.dispose();
             let demo = new demoClass();
+            this.ui.getChildByName("n37").asButton.onClick(tihs,this.onClickBtn)
             Laya.stage.event("start_demo", demo);
         }
         destroy() {
             this._view.dispose();
+        }
+
+        onClickBtn()
+        {
+            this.c2.setSelectIndex = 1;
         }
     }
 
